@@ -18,10 +18,11 @@ pune = admin.addStation("Pune", "Maharashtra", "4000801")
 chennai = admin.addStation("Chennai", "Tamil Nadu", "400087")
 
 trainRoute12640 = admin.addTrainRoute(12640, [mumbaicst, lonavala, pune, chennai])
+trainRoute12640.viewTrainRoute()
 ##trainRoute12640.listOfStation[3] = "Thane"
 
 train12640 = admin.addTrain(12640, "Chennai Express",  trainRoute12640.trainRouteId, 1000, 100)
-train12641 = admin.addTrain(12640, "Mumbai Express",  trainRoute12640.trainRouteId, 2000, 100)
+train12641 = admin.addTrain(12641, "Mumbai Express",  trainRoute12640.trainRouteId, 2000, 100)
 
 print(train12640.__class__.__name__)
 
@@ -44,8 +45,8 @@ print(train12640.__class__.__name__)
 
 # merwin.viewTrainsByDate(datetime.date(2022, 7, 22))4
 
+#creating seats
 seats = []
-
 seats.append(Seat(1, None, False))
 seats.append(Seat(2, None, False))
 seats.append(Seat(3, None, False))
@@ -53,7 +54,6 @@ seats.append(Seat(3, None, False))
 admin.createBookingInterface(datetime.date(2022, 7, 22), 12640, seats,3)
 
 seats = []
-
 seats.append(Seat(1, None, False))
 seats.append(Seat(2, None, False))
 seats.append(Seat(3, None, False))
@@ -68,23 +68,34 @@ seats.append(Seat(3, None, False))
 
 admin.createBookingInterface(datetime.date(2022, 7, 24), 12640, seats,3)
 
-print(BookingInterface.allBookingInterface)
+# print(BookingInterface.allBookingInterface)
 
+##admin creating bookingUser
 merwin = admin.createBookingUser("merwin", "password@123")
-print(merwin)
 
+#user creating wallet
 merwin.createWallet(3000)
 wallet = Wallet.findById(merwin.walletId)
 print(f"Wallet Amount {wallet.totalAmount}")
 
+
+##user creating passengers to add in the ticket
 amit = merwin.createPassenger("Amit", 22, "Male")
 jash = merwin.createPassenger("Jash", 22, "Male")
 jay = merwin.createPassenger("Jay", 22, "Male")
 
 list_of_passengers = [amit, jash, jay]
 
-merwin.bookTrainByNo(12640, datetime.date(2022, 7, 22), list_of_passengers, "merwin")
+merwin.bookTrainByNo(12640, datetime.date(2022, 7, 22), list_of_passengers)
 
+
+##view all trains
+print("\nAll Trains Added By Admin")
+admin = Train.viewAllTrains()
+
+
+#check train availability with date and train-
+merwin.viewTrainAvailability(12640, datetime.date(2022, 7, 22))
 
 
 

@@ -1,4 +1,5 @@
 import uuid
+from structlinks import LinkedList
 class Station:
     allStations = []
     def __init__(self, stationName, stationState, stationPinCode):

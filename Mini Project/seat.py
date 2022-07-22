@@ -6,7 +6,6 @@ class Seat:
         self.seatNo = seatNo
         self.passenger_id = passenger_id
         self.isBooked = isBooked
-        # self.seatType = seatType
 
     @staticmethod
     def addSeat(seatNo,passenger_id,isBooked):

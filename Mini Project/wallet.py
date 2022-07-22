@@ -28,3 +28,9 @@ class Wallet:
             if i.userName == userName:
                 return i
 
+    def isBalanceSufficient(self, amout):
+        if self.totalAmount>=amout:
+            return True
+        else:
+            return False
+

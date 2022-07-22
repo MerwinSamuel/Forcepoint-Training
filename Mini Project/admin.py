@@ -4,7 +4,7 @@ from station import Station
 from trainRoute import TrainRoute
 from seat import Seat
 from bookingUser import BookingUser
-import uuid
+
 class Admin:
     def __init__(self,adminUsername,adminPassword) -> None:
         self.adminUsername = adminUsername
@@ -13,16 +13,18 @@ class Admin:
     def addTrain(self, trainNo, trainName, trainRouteId, costPerTicket, totalSeats):
         newtrain = Train.addNewTrain(trainNo, trainName, trainRouteId, costPerTicket, totalSeats)
         return newtrain
-    def cancelTrain():
-        pass
+
     def updateTrain(userName,newproerty,newValue):
         pass
         # setattr(objectTrain,newproerty,newValue)
+
     def addStation(self,stationName, stationState, stationPinCode):
         newStation = Station.createStation(stationName, stationState, stationPinCode)
         return newStation
+
     def deleteStation():
         pass
+
     def addSeat(self,seatNo,passenger_id,isBooked):
         newSeat = Seat.addSeat(seatNo,passenger_id,isBooked)
         return newSeat
@@ -30,12 +32,10 @@ class Admin:
     def addTrainRoute(self,trainNo,listOfStation):
         newTrainRoute = TrainRoute.createTrainRoute(trainNo,listOfStation)
         return newTrainRoute
+
     def updatestation(userName,newproerty,newValue):
         pass
-    # def createBookingUser(self,):
-    #     newBookingUser = 
-        # setattr(objectStation,newproerty,newValue)
-
+   
     def createBookingInterface(self, date, train, seats, totalSeats):
         BookingInterface.createBookingInterface(date, train, seats, totalSeats)
     
@@ -43,4 +43,6 @@ class Admin:
         newBookingUser =  BookingUser.createBookingUser(userName,password)
         return newBookingUser
     
+    def viewAllTrains(self):
+        Train.viewAllTrains()
 

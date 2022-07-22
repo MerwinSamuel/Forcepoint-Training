@@ -25,24 +25,8 @@ class BookingUser:
         return wallet
 
     
-    def bookTrainByNo(self, trainNo, date, passengerList, userName):
-        bookingInterfaceList = BookingInterface.allBookingInterface
-        for i in bookingInterfaceList:
-            if i.trainNo == trainNo and i.date ==date:
-                if i.totalSeats >= len(passengerList):
-                    train = Train.findTrainByNo(trainNo)
-                    perTicketCost = train.costPerTicket
-                    totalCost = perTicketCost*len(passengerList)
-                    # user = BookingUser.findById(userName)
-                    wallet = Wallet.findByUserName(userName)
-                    if not wallet.totalAmount>=totalCost:
-                        print("Can't book tickets, wallet balance is low")
-                        return
-                    ticket = Ticket.bookTicket(trainNo, date, passengerList, i.seats, userName)
-                    print("\nYour Ticket has been Successfully Booked!")
-                    ticket.viewTicket()
-                else:
-                    print("Seat not available")
+    def bookTrainByNo(self, trainNo, date, passengerList):
+        BookingInterface.checkSeatsAndBook(self.userName, trainNo, date, passengerList)
     
     @staticmethod
     def createPassenger(passengerName, passengeerAge, passengerGender):
@@ -60,6 +44,18 @@ class BookingUser:
         return "Value Updated"
 
 
+    def viewPreviousBookedTickets(self):
+        allTickets = Ticket.allTickets
+        for i in allTickets:
+            if i.bookingUserName == self.id:
+                i.viewTicket()
 
 
+    def cancelTicket(self, pnr_no):
+        Ticket.deleteTicket(pnr_no)
+
+    
+    def viewTrainAvailability(self, trainNo, date):
+        print("\nAvailable Trains:")
+        BookingInterface.viewTrainAvailability(trainNo, date)
 

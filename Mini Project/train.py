@@ -1,5 +1,3 @@
-from seat import Seat
-
 import uuid
 class Train:
     allTrains= []
@@ -30,19 +28,19 @@ class Train:
         setattr(self,propertyName,newValue)
         return "Value updated"
 
-    def deleteTrain(self,trainNo):
+    def deleteTrain(self):
         for i in Train.allTrains:
-            if self.trainNo == trainNo:
+            if self.trainNo == i.trainNo:
                 Train.allTrains.remove(i)
 
 
-    def addSleeperSeats(self, seatId):
-        seat = Seat.findById(seatId)
-        self.sleeperSeats.append(seat)
+    # def addSleeperSeats(self, seatId):
+    #     seat = Seat.findById(seatId)
+    #     self.sleeperSeats.append(seat)
     
-    def addAcSeats(self, seatId):
-        seat = Seat.findById(seatId)
-        self.acSeats.append(seat)
+    # def addAcSeats(self, seatId):
+    #     seat = Seat.findById(seatId)
+    #     self.acSeats.append(seat)
 
     @staticmethod
     def viewTrainsByDate(date):
@@ -51,6 +49,15 @@ class Train:
             if i.date == date:
                 listOfTrains.append(i)
                 print(f"{i.trainNo}-{i.trainName} - Available Seats-{i.remainingSeats}")
+
+    
+    
+    
+    
+    @staticmethod
+    def viewAllTrains():
+        for i in Train.allTrains:
+            print(f"{i.trainNo} {i.trainName}")
         
 
     
