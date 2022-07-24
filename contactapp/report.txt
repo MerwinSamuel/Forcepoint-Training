@@ -1,0 +1,4 @@
+DRY - done
+kiss - method signature could be kept simple
+yagni - no issues
+soc - contact methods needs to be in contact class
